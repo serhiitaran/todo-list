@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './todo-item.css';
+
 export const TodoItem = ({ label, done }) => {
   let classNames = 'todo-item';
   if (done) {
