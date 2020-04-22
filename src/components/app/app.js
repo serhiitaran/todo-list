@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Header from '../header';
+import TodoList from '../todo-list';
 
 import './app.css';
 
@@ -13,9 +14,13 @@ export class App extends Component {
     ],
   };
   render() {
+    const { items } = this.state;
     return (
       <div className="app">
         <Header done={1} active={2} />
+        <main>
+          <TodoList items={items} />
+        </main>
       </div>
     );
   }
