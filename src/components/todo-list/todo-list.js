@@ -4,7 +4,7 @@ import TodoItem from '../todo-item';
 
 import './todo-list.css';
 
-export const TodoList = ({ items, onItemDelete }) => {
+export const TodoList = ({ items, onItemDelete, onToggleDone }) => {
   const todoItems = items.map(item => {
     const { id, ...itemProps } = item;
     return (
@@ -12,6 +12,7 @@ export const TodoList = ({ items, onItemDelete }) => {
         key={id}
         {...itemProps}
         onDelete={() => onItemDelete(id)}
+        onDone={() => onToggleDone(id)}
       />
     );
   });

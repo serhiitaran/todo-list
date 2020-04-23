@@ -27,6 +27,23 @@ export class App extends Component {
     });
   };
 
+  handleToggleDone = id => {
+    this.setState(prevState => {
+      const itemIndex = prevState.items.findIndex(
+        item => item.id === id,
+      );
+      const oldItem = prevState.items[itemIndex];
+      const newValue = !oldItem.done;
+      const changedItem = { ...oldItem, done: newValue };
+      const items = [
+        ...prevState.items.slice(0, itemIndex),
+        changedItem,
+        ...prevState.items.slice(itemIndex + 1),
+      ];
+      return { items };
+    });
+  };
+
   render() {
     const { items } = this.state;
     return (
@@ -36,6 +53,7 @@ export class App extends Component {
           <TodoList
             items={items}
             onItemDelete={this.handleItemDelete}
+            onToggleDone={this.handleToggleDone}
           />
         </main>
       </div>
