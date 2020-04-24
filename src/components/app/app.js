@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Header from '../header';
 import TodoList from '../todo-list';
+import TodoAdd from '../todo-add';
 
 import './app.css';
 
@@ -55,6 +56,7 @@ export class App extends Component {
             onItemDelete={this.handleItemDelete}
             onToggleDone={this.handleToggleDone}
           />
+          <TodoAdd />
         </main>
       </div>
     );
