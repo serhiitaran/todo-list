@@ -16,6 +16,9 @@ export class TodoAdd extends Component {
     event.preventDefault();
     const { onItemAdd } = this.props;
     const { value } = this.state;
+    if (!this.state.value) {
+      return;
+    }
     onItemAdd(value);
     this.setState({
       value: '',
