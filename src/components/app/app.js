@@ -15,6 +15,24 @@ export class App extends Component {
     ],
   };
 
+  idCounter = 100;
+
+  createItem = label => {
+    return {
+      id: ++this.idCounter,
+      label,
+      done: false,
+    };
+  };
+
+  handleItemAdd = label => {
+    this.setState(prevState => {
+      const newItem = this.createItem(label);
+      const items = [...prevState.items, newItem];
+      return { items };
+    });
+  };
+
   handleItemDelete = id => {
     this.setState(prevState => {
       const itemIndex = prevState.items.findIndex(
@@ -56,7 +74,7 @@ export class App extends Component {
             onItemDelete={this.handleItemDelete}
             onToggleDone={this.handleToggleDone}
           />
-          <TodoAdd />
+          <TodoAdd onItemAdd={this.handleItemAdd} />
         </main>
       </div>
     );

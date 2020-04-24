@@ -10,16 +10,16 @@
   box-sizing: border-box;
   width: 100%;
   padding-right: 10px;
+  padding-bottom: 20px;
   padding-left: 30px;
 
   font-size: 16px;
   letter-spacing: 0.5px;
 
   border: none;
-  padding-bottom: 20px;
 }
 
-.todo-add__input:focus{
+.todo-add__input:focus {
   outline-color: transparent;
 }
 
