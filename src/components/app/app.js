@@ -65,9 +65,11 @@ export class App extends Component {
 
   render() {
     const { items } = this.state;
+    const doneItemsCount = items.filter(({ done }) => done).length;
+    const activeItemsCount = items.length - doneItemsCount;
     return (
       <div className="app">
-        <Header done={1} active={2} />
+        <Header done={doneItemsCount} active={activeItemsCount} />
         <main>
           <TodoList
             items={items}
