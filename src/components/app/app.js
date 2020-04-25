@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from '../header';
 import TodoList from '../todo-list';
 import TodoAdd from '../todo-add';
+import TodoSearch from '../todo-search';
 
 import './app.css';
 
@@ -71,6 +72,7 @@ export class App extends Component {
       <div className="app">
         <Header done={doneItemsCount} active={activeItemsCount} />
         <main>
+          <TodoSearch />
           <TodoList
             items={items}
             onItemDelete={this.handleItemDelete}
