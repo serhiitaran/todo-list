@@ -14,6 +14,7 @@ export class App extends Component {
       { id: 2, label: 'Second to do item', done: true },
       { id: 3, label: 'Third to do item', done: false },
     ],
+    search: '',
   };
 
   idCounter = 100;
@@ -64,17 +65,28 @@ export class App extends Component {
     });
   };
 
+  handleSearchChange = search => {
+    this.setState({ search });
+  };
+
+  searchItems = (items, search) => {
+    return items.filter(({ label }) =>
+      label.toLowerCase().includes(search.toLowerCase()),
+    );
+  };
+
   render() {
-    const { items } = this.state;
+    const { items, search } = this.state;
     const doneItemsCount = items.filter(({ done }) => done).length;
     const activeItemsCount = items.length - doneItemsCount;
+    const visibleItems = this.searchItems(items, search);
     return (
       <div className="app">
         <Header done={doneItemsCount} active={activeItemsCount} />
         <main>
-          <TodoSearch />
+          <TodoSearch onSearchChange={this.handleSearchChange} />
           <TodoList
-            items={items}
+            items={visibleItems}
             onItemDelete={this.handleItemDelete}
             onToggleDone={this.handleToggleDone}
           />
