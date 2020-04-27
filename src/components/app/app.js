@@ -4,6 +4,7 @@ import Header from '../header';
 import TodoList from '../todo-list';
 import TodoAdd from '../todo-add';
 import TodoSearch from '../todo-search';
+import TodoFilters from '../todo-filters';
 
 import './app.css';
 
@@ -85,6 +86,7 @@ export class App extends Component {
         <Header done={doneItemsCount} active={activeItemsCount} />
         <main>
           <TodoSearch onSearchChange={this.handleSearchChange} />
+          <TodoFilters />
           <TodoList
             items={visibleItems}
             onItemDelete={this.handleItemDelete}
