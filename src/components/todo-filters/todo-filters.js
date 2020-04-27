@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './todo-filters.css';
+
 export const TodoFilters = () => {
   const filtersButtons = [
     { label: 'All', id: 'all' },
