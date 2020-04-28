@@ -20,7 +20,7 @@
 }
 
 .todo-add__input:focus {
-  outline-color: transparent;
+  outline: none;
 }
 
 .todo-add:before {
