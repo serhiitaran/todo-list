@@ -16,6 +16,7 @@ export class App extends Component {
       { id: 3, label: 'Third to do item', done: false },
     ],
     search: '',
+    filter: 'all',
   };
 
   idCounter = 100;
@@ -70,23 +71,46 @@ export class App extends Component {
     this.setState({ search });
   };
 
+  handleFilterChange = filter => {
+    this.setState({ filter });
+  };
+
   searchItems = (items, search) => {
     return items.filter(({ label }) =>
       label.toLowerCase().includes(search.toLowerCase()),
     );
   };
 
+  filterItems = (items, filter) => {
+    switch (filter) {
+      case 'all':
+        return items;
+      case 'done':
+        return items.filter(({ done }) => done);
+      case 'active':
+        return items.filter(({ done }) => !done);
+      default:
+        return items;
+    }
+  };
+
   render() {
-    const { items, search } = this.state;
+    const { items, search, filter } = this.state;
     const doneItemsCount = items.filter(({ done }) => done).length;
     const activeItemsCount = items.length - doneItemsCount;
-    const visibleItems = this.searchItems(items, search);
+    const visibleItems = this.searchItems(
+      this.filterItems(items, filter),
+      search,
+    );
     return (
       <div className="app">
         <Header done={doneItemsCount} active={activeItemsCount} />
         <main>
           <TodoSearch onSearchChange={this.handleSearchChange} />
-          <TodoFilters />
+          <TodoFilters
+            onFilterChange={this.handleFilterChange}
+            filter={filter}
+          />
           <TodoList
             items={visibleItems}
             onItemDelete={this.handleItemDelete}
